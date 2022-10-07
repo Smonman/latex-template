@@ -15,20 +15,21 @@
 \usepackage{amssymb} % math symbols
 \usepackage{mathtools} % enhances amsmath
 \usepackage{microtype} %improves the spacing between words and letters
-\usepackage{graphicx}	% graphics, images
+\usepackage{graphicx} % graphics, images
 \usepackage{array} % extension of array and tabular environments
 \usepackage{xcolor} % work with colors
 \usepackage{fp} % fixed point arithmetic
 \usepackage{booktabs} % better table design
-\usepackage{tabularx}	% better table layout
-\usepackage{makecell}	% table cell configuration
+\usepackage{tabularx} % better table layout
+\usepackage{makecell} % table cell configuration
 \usepackage{listings} % code listing
-\usepackage{tikz}	% draw diagrams and figures
-\usepackage{varwidth}	% variable width mini-page
+\usepackage{tikz} % draw diagrams and figures
+\usepackage{varwidth} % variable width mini-page
 \usepackage{float} % 
 \usepackage[most]{tcolorbox} % for infoboxes
-\usepackage[utf8]{inputenc}	% input encoding
+\usepackage[utf8]{inputenc} % input encoding
 \usepackage[T1]{fontenc} % font encoding for umlaute
+\usepackage{lipsum} % dummy text
 % MUST BE PLACED LAST%
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 
@@ -54,19 +55,18 @@
 \pretitle{
   \begin{center}
     \Huge
-}
-\posttitle{
+    }
+    \posttitle{
   \end{center}
   \noindent\vrule height 2.5pt width \textwidth
   \vskip .75em plus .25em minus .25em
 }
 \preauthor{
   \begin{center}
-    \itshape
+    \itshape---
+    }
+    \postauthor{
     ---
-}
-\postauthor{
-  ---  
   \end{center}
 }
 
@@ -93,7 +93,7 @@
   commentstyle=\color{codegray},
   deletekeywords={},
   extendedchars=true,
-  firstnumber=1,                   
+  firstnumber=1,
   frame=single,
   keepspaces=true,
   keywordstyle=\color{codeblue}\bfseries,
@@ -101,7 +101,7 @@
   numbers=left,
   numbersep=5pt,
   numberstyle=\tiny\color{codegray},
-  rulecolor=\color{black},         
+  rulecolor=\color{black},
   showspaces=false,
   showstringspaces=false,
   showtabs=false,
@@ -116,10 +116,10 @@
   breaklines=true,
   captionpos=t,
   extendedchars=true,
-  firstnumber=1,                 
+  firstnumber=1,
   frame=single,
   keepspaces=true,
-  rulecolor=\color{black},         
+  rulecolor=\color{black},
   stepnumber=0,
   tabsize=4,
   title=Output,
@@ -140,60 +140,60 @@
 \tikzset{node distance=1cm}
 
 \tikzstyle{container} = [
-  rectangle,
-  very thick,
-  minimum width=4em,
-  minimum height=4em,
-  inner sep=1em,
-  draw=black,
-  fill=mysmoke,
-  label={\huge{Agent}}
+rectangle,
+very thick,
+minimum width=4em,
+minimum height=4em,
+inner sep=1em,
+draw=black,
+fill=mysmoke,
+label={\huge{Agent}}
 ]
 
 \tikzstyle{roundedcontainer} = [
-  rectangle,
-  very thick,
-  rounded corners=1em,
-  minimum width=4em,
-  minimum height=4em,
-  inner sep=1em,
-  draw=black,
-  fill=smoke,
-  label={\huge{Agent}}
+rectangle,
+very thick,
+rounded corners=1em,
+minimum width=4em,
+minimum height=4em,
+inner sep=1em,
+draw=black,
+fill=smoke,
+label={\huge{Agent}}
 ]
 
 \tikzstyle{basic} = [
-  rectangle,
-  thick,
-  minimum width=7em,
-  minimum height=2em,
-  text centered,
-  draw=black,
-  fill=white,
-  execute at begin node={\begin{varwidth}{12em}},
-  execute at end node={\end{varwidth}}
+rectangle,
+thick,
+minimum width=7em,
+minimum height=2em,
+text centered,
+draw=black,
+fill=white,
+execute at begin node={\begin{varwidth}{12em}},
+      execute at end node={\end{varwidth}}
 ]
 
 \tikzstyle{roundedbasic} = [
-  rectangle,
-  thick,
-  rounded corners,
-  minimum width=7em,
-  minimum height=2em,
-  text centered,
-  draw=black,
-  fill=white,
-  execute at begin node={\begin{varwidth}{12em}},
-  execute at end node={\end{varwidth}}
+rectangle,
+thick,
+rounded corners,
+minimum width=7em,
+minimum height=2em,
+text centered,
+draw=black,
+fill=white,
+execute at begin node={\begin{varwidth}{12em}},
+      execute at end node={\end{varwidth}}
 ]
 
 \tikzstyle{arrow} = [
-  very thick,
-  ->,
-  -stealth,
-  rounded corners=3mm,
-  shorten <=2pt,
-  shorten >=2pt
+very thick,
+->,
+-stealth,
+rounded corners=3mm,
+shorten <=2pt,
+shorten >=2pt
 ]
 
 %%% PGF LAYERS
@@ -232,16 +232,16 @@
 \newenvironment{infobox}[1][]{
   \begin{info@box}
     \begin{tcolorbox}[
-      colback=mylightblue!10!white,
-      colframe=myblue!80!black,
-      adjusted title=\sffamily\large\bfseries \IfLanguageName{ngerman}{Wichtig: #1}{Info: #1},
-      arc is angular,
-      arc=5pt,
-      sharp corners,
-      rounded corners=southeast,
-      boxrule=0.8pt
-    ]
-}{
+        colback=mylightblue!10!white,
+        colframe=myblue!80!black,
+        adjusted title=\sffamily\large\bfseries \IfLanguageName{ngerman}{Wichtig: #1}{Info: #1},
+        arc is angular,
+        arc=5pt,
+        sharp corners,
+        rounded corners=southeast,
+        boxrule=0.8pt
+      ]
+      }{
     \end{tcolorbox}
   \end{info@box}
 }
@@ -256,27 +256,26 @@
   \begin{highlight@box}
     \begin{center}
       \begin{tcolorbox}[
-        colback=white,
-        colframe=black,
-        notitle,
-        arc=0pt,
-        sharpish corners,
-        boxrule=0.8pt,
-        halign=flush center,
-        width=0.4\linewidth,
-        lifted shadow={1mm}{-2mm}{3mm}{0.2mm}{black!50!white}
-      ]
-}{  
+          colback=white,
+          colframe=black,
+          notitle,
+          arc=0pt,
+          sharpish corners,
+          boxrule=0.8pt,
+          halign=flush center,
+          width=0.4\linewidth,
+          lifted shadow={1mm}{-2mm}{3mm}{0.2mm}{black!50!white}
+        ]
+        \large
+        }{
       \end{tcolorbox}
     \end{center}
   \end{highlight@box}
 }
 
 %%%
-%%% PLACE  CUSTOM STYLES HERE
+%%% PLACE CUSTOM STYLES HERE
 %%%
-
-
 
 %%%
 
@@ -290,86 +289,21 @@
 \newpage
 
 \section{Introduction}
-This document is primarily intended
-to test the functionality
-of some \LaTeX\space packages that require
-driver support for their functionality.
-It is quick-and-dirty.
-It is not intended to be pretty, and
-does not demonstrate good ways to use these packages
-(In fact, it demonstrates some bad ways to use these packages).
+\lipsum[1-1]
 
-This is a \href{http://odo.kettering.edu/dvipdfm/}{test too see how
-well dvipdfm handles links that need to be broken over several lines.  This
-will only work if you have dvipdfm version 0.12.4 or later
-and have installed {\tt hdvpdfm.def} from the version 0.12.4 or
-later distribution.}
+\subsection{Subsection}
+\lipsum[2-3]
 
-\section{LaTeX Support Information}
-Dvipdfm support for the hyperref \LaTeX\space package is
-in hyperref versions 6.44 (12/07/98) and above, available on CTAN.
-Dvipdfm is now supported in the
-standard \LaTeX\space release (via the ``color'' and ``graphics'' packages) in
-\LaTeX\space releases dated later than December 1998.
+\subsubsection{Subsubsection}
+\lipsum[2-3]
 
-If you have an older LaTeX\space and don't want to upgrade,
-this distribution of {\tt dvipdfm} includes
-the {\tt .def} files required to support
-the
-{\textcolor{green}{c}%
-\textcolor{red}{o}%
-\textcolor{blue}{l}%
-\textcolor{green}{o}%
-\textcolor{red}{r}
-and
-\scalebox{1.3}[1]{\rotatebox{15}{gr%
-  \scalebox{1.3}[1]{\rotatebox{15}{ap%
-    \scalebox{1.3}[1]{\rotatebox{15}{hi%
-       \scalebox{1.3}[1]{\rotatebox{15}{cs}}}}}}}}
-packages.}
-You may also need to modify {\tt color.sty}, {\tt graphics.sty},
-and {\tt hyperref.sty} so that they
-recognize {\tt dvipdfm} as a driver.
-Once these {\tt .def} files are installed,
-you should be able to use {\tt dvipdfm}
-with \LaTeX\space for many applications.
+\paragraph{Paragraph}
+\lipsum[1-2]
 
-After running \LaTeX\space on this
-document, {\tt hyperref}
-should produce a hyperlinked
-document, complete with an outline.
+\subparagraph{Subparagraph}
+\lipsum[1-2]
 
-\newpage
-\section{Graphics Support}
-Currently, JPEG and PDF image
-inclusion are supported.
-
-\subsection{JPEG Image Inclusion}
-Figure
-shows a photograph of the author
-that was obtained from a JPEG file.
-A small file with the extension of {\tt .bb}
-supplies the bounding box to the \LaTeX\space
-Graphics package.  For PDF and JPEG files,
-this bounding box can easily be created by running
-the {\tt ebb} utility included with this
-distribution of {\tt dvipdfm}.
-
-\begin{infobox}[test]
-  TEST TEST TEST
-\end{infobox}
-
-\begin{highlightbox}
-  TEST TEST TEST das ist ein sehr langer text halli hallo.
-\end{highlightbox}
-
-\subsection{PDF Image Inclusion}
-Figure shows
-an electronics circuit,
-drawn with XFig, distilled,
-and then included as PDF file.
-It has been mangled for testing purposes.
-
+\section{lstlistings}
 \begin{lstlisting}[language=python]
 import numpy as np
     
@@ -439,11 +373,16 @@ Enter a positive integer: 100
 Fibonacci Series: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 
 \end{lstlisting}
 
-\begin{itemize}
-  \item Bla bla
-  \item bla
-  \item das ist ein langer text
-  \item bla
-\end{itemize}
+\section{Boxes}
+
+\subsection{Infobox}
+\begin{infobox}[]
+  \lipsum[1-1]
+\end{infobox}
+
+\subsection{Highlightbox}
+\begin{highlightbox}
+  \(1 + 2 = 3\)
+\end{highlightbox}
 
 \end{document}
