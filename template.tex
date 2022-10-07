@@ -1,0 +1,449 @@
+%%% TEMPLATE
+% Author: Simon Josef Kreuzpointner
+% Date: 06.10.2022
+
+\documentclass[10pt,titlepage]{article}
+
+% PACKAGES
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,headsep=1cm]{geometry} % layout
+\usepackage[english,ngerman]{babel} % language
+\usepackage{iflang} % conditional statements based on selected language
+\usepackage[skip=4pt, indent=10pt]{parskip} % spacing between paragraphs
+\usepackage{titling} % title
+\usepackage{fancyhdr} % header and footer
+\usepackage{amsmath} % math
+\usepackage{amssymb} % math symbols
+\usepackage{mathtools} % enhances amsmath
+\usepackage{microtype} %improves the spacing between words and letters
+\usepackage{graphicx}	% graphics, images
+\usepackage{array} % extension of array and tabular environments
+\usepackage{xcolor} % work with colors
+\usepackage{fp} % fixed point arithmetic
+\usepackage{booktabs} % better table design
+\usepackage{tabularx}	% better table layout
+\usepackage{makecell}	% table cell configuration
+\usepackage{listings} % code listing
+\usepackage{tikz}	% draw diagrams and figures
+\usepackage{varwidth}	% variable width mini-page
+\usepackage{float} % 
+\usepackage[most]{tcolorbox} % for infoboxes
+\usepackage[utf8]{inputenc}	% input encoding
+\usepackage[T1]{fontenc} % font encoding for umlaute
+% MUST BE PLACED LAST%
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+%%% COLORS
+% standard colors
+\definecolor{myyellow}{rgb}{0.94, 0.82, 0.007}
+\definecolor{myred}{rgb}{0.75, 0.16, 0.18}
+\definecolor{myblue}{rgb}{0.13, 0.34, 0.53}
+\definecolor{mydarkblue}{rgb}{0.1, 0.16, 0.27}
+\definecolor{mylightblue}{rgb}{0.39, 0.68, 1}
+\definecolor{mydarkgreen}{rgb}{0, 0.4, 0}
+\definecolor{mysmoke}{rgb}{0.9, 0.9, 0.9}
+% lstlisting
+\definecolor{codegray}{HTML}{707070}
+\definecolor{codelightgray}{HTML}{FAFAFA}
+\definecolor{codegreen}{HTML}{24751B}
+\definecolor{codeblue}{HTML}{1733BF}
+
+%%% GRAPHIXS PATH
+\graphicspath{{../img/}}
+
+%%% TITLE STYLE
+\pretitle{
+  \begin{center}
+    \Huge
+}
+\posttitle{
+  \end{center}
+  \noindent\vrule height 2.5pt width \textwidth
+  \vskip .75em plus .25em minus .25em
+}
+\preauthor{
+  \begin{center}
+    \itshape
+    ---
+}
+\postauthor{
+  ---  
+  \end{center}
+}
+
+%%% PAGESTYLE
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\renewcommand{\headrulewidth}{0.2pt}
+\fancyfoot[C]{\thepage}
+\renewcommand{\footrulewidth}{0.2pt}
+\renewcommand{\footruleskip}{1em}
+\renewcommand{\subsectionmark}[1]{\markright{\thesubsection\ #1}}
+
+%%% ITEMIZE STYLE
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
+
+%%% LSTLISTING STYLE
+\lstdefinestyle{lststandardstyle}{
+  backgroundcolor=\color{codelightgray},
+  basicstyle=\footnotesize\ttfamily,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=t,
+  commentstyle=\color{codegray},
+  deletekeywords={},
+  extendedchars=true,
+  firstnumber=1,                   
+  frame=single,
+  keepspaces=true,
+  keywordstyle=\color{codeblue}\bfseries,
+  morekeywords={*,...},
+  numbers=left,
+  numbersep=5pt,
+  numberstyle=\tiny\color{codegray},
+  rulecolor=\color{black},         
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  stepnumber=1,
+  stringstyle=\color{codegreen},
+  tabsize=4,
+}
+\lstdefinestyle{lstoutput}{
+  backgroundcolor=\color{codelightgray},
+  basicstyle=\footnotesize\ttfamily,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=t,
+  extendedchars=true,
+  firstnumber=1,                 
+  frame=single,
+  keepspaces=true,
+  rulecolor=\color{black},         
+  stepnumber=0,
+  tabsize=4,
+  title=Output,
+}
+\lstset{style=lststandardstyle}
+
+%%% TIKZ
+% tikz libraries
+\usetikzlibrary{
+  shapes.geometric,
+  arrows,
+  positioning,
+  bending,
+  fit
+}
+
+% default node distance
+\tikzset{node distance=1cm}
+
+\tikzstyle{container} = [
+  rectangle,
+  very thick,
+  minimum width=4em,
+  minimum height=4em,
+  inner sep=1em,
+  draw=black,
+  fill=mysmoke,
+  label={\huge{Agent}}
+]
+
+\tikzstyle{roundedcontainer} = [
+  rectangle,
+  very thick,
+  rounded corners=1em,
+  minimum width=4em,
+  minimum height=4em,
+  inner sep=1em,
+  draw=black,
+  fill=smoke,
+  label={\huge{Agent}}
+]
+
+\tikzstyle{basic} = [
+  rectangle,
+  thick,
+  minimum width=7em,
+  minimum height=2em,
+  text centered,
+  draw=black,
+  fill=white,
+  execute at begin node={\begin{varwidth}{12em}},
+  execute at end node={\end{varwidth}}
+]
+
+\tikzstyle{roundedbasic} = [
+  rectangle,
+  thick,
+  rounded corners,
+  minimum width=7em,
+  minimum height=2em,
+  text centered,
+  draw=black,
+  fill=white,
+  execute at begin node={\begin{varwidth}{12em}},
+  execute at end node={\end{varwidth}}
+]
+
+\tikzstyle{arrow} = [
+  very thick,
+  ->,
+  -stealth,
+  rounded corners=3mm,
+  shorten <=2pt,
+  shorten >=2pt
+]
+
+%%% PGF LAYERS
+% declare a new background layer beneath the main layer
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+
+%%% TABULARX
+% declare a new column type, that auto sizes but has ragged right text
+\newcolumntype{Z}{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}X}
+
+%%% TABLE HEADER
+% set table header to bold
+\renewcommand\theadfont{\bfseries}
+\renewcommand{\theadalign}{cl}
+\renewcommand{\cellalign}{tl}
+
+%%% NEW COMMANDS
+% math set
+\newcommand{\mset}[1]{\ensuremath{\{\: #1 \:\}}}
+% german qote
+\newcommand{\gqote}[1]{\glqq #1\grqq}
+% logical true and false
+\newcommand{\ltrue}{\top}
+\newcommand{\lfalse}{\bot}
+
+%%% TCOLORBOX
+\tcbset{enhanced}
+
+%%% INFO BOX
+\makeatletter
+\newfloat{info@box}{!htbp}{loi}[section]
+\makeatother
+\floatname{info@box}{Infobox}
+
+\newenvironment{infobox}[1][]{
+  \begin{info@box}
+    \begin{tcolorbox}[
+      colback=mylightblue!10!white,
+      colframe=myblue!80!black,
+      adjusted title=\sffamily\large\bfseries \IfLanguageName{ngerman}{Wichtig: #1}{Info: #1},
+      arc is angular,
+      arc=5pt,
+      sharp corners,
+      rounded corners=southeast,
+      boxrule=0.8pt
+    ]
+}{
+    \end{tcolorbox}
+  \end{info@box}
+}
+
+%%% HIGHLIGHT BOX
+\makeatletter
+\newfloat{highlight@box}{!htbp}{loi}[section]
+\makeatother
+\floatname{highlight@box}{Highlightbox}
+
+\newenvironment{highlightbox}{
+  \begin{highlight@box}
+    \begin{center}
+      \begin{tcolorbox}[
+        colback=white,
+        colframe=black,
+        notitle,
+        arc=0pt,
+        sharpish corners,
+        boxrule=0.8pt,
+        halign=flush center,
+        width=0.4\linewidth,
+        lifted shadow={1mm}{-2mm}{3mm}{0.2mm}{black!50!white}
+      ]
+}{  
+      \end{tcolorbox}
+    \end{center}
+  \end{highlight@box}
+}
+
+%%%
+%%% PLACE  CUSTOM STYLES HERE
+%%%
+
+
+
+%%%
+
+\title{Title}
+\author{Author}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+This document is primarily intended
+to test the functionality
+of some \LaTeX\space packages that require
+driver support for their functionality.
+It is quick-and-dirty.
+It is not intended to be pretty, and
+does not demonstrate good ways to use these packages
+(In fact, it demonstrates some bad ways to use these packages).
+
+This is a \href{http://odo.kettering.edu/dvipdfm/}{test too see how
+well dvipdfm handles links that need to be broken over several lines.  This
+will only work if you have dvipdfm version 0.12.4 or later
+and have installed {\tt hdvpdfm.def} from the version 0.12.4 or
+later distribution.}
+
+\section{LaTeX Support Information}
+Dvipdfm support for the hyperref \LaTeX\space package is
+in hyperref versions 6.44 (12/07/98) and above, available on CTAN.
+Dvipdfm is now supported in the
+standard \LaTeX\space release (via the ``color'' and ``graphics'' packages) in
+\LaTeX\space releases dated later than December 1998.
+
+If you have an older LaTeX\space and don't want to upgrade,
+this distribution of {\tt dvipdfm} includes
+the {\tt .def} files required to support
+the
+{\textcolor{green}{c}%
+\textcolor{red}{o}%
+\textcolor{blue}{l}%
+\textcolor{green}{o}%
+\textcolor{red}{r}
+and
+\scalebox{1.3}[1]{\rotatebox{15}{gr%
+  \scalebox{1.3}[1]{\rotatebox{15}{ap%
+    \scalebox{1.3}[1]{\rotatebox{15}{hi%
+       \scalebox{1.3}[1]{\rotatebox{15}{cs}}}}}}}}
+packages.}
+You may also need to modify {\tt color.sty}, {\tt graphics.sty},
+and {\tt hyperref.sty} so that they
+recognize {\tt dvipdfm} as a driver.
+Once these {\tt .def} files are installed,
+you should be able to use {\tt dvipdfm}
+with \LaTeX\space for many applications.
+
+After running \LaTeX\space on this
+document, {\tt hyperref}
+should produce a hyperlinked
+document, complete with an outline.
+
+\newpage
+\section{Graphics Support}
+Currently, JPEG and PDF image
+inclusion are supported.
+
+\subsection{JPEG Image Inclusion}
+Figure
+shows a photograph of the author
+that was obtained from a JPEG file.
+A small file with the extension of {\tt .bb}
+supplies the bounding box to the \LaTeX\space
+Graphics package.  For PDF and JPEG files,
+this bounding box can easily be created by running
+the {\tt ebb} utility included with this
+distribution of {\tt dvipdfm}.
+
+\begin{infobox}[test]
+  TEST TEST TEST
+\end{infobox}
+
+\begin{highlightbox}
+  TEST TEST TEST das ist ein sehr langer text halli hallo.
+\end{highlightbox}
+
+\subsection{PDF Image Inclusion}
+Figure shows
+an electronics circuit,
+drawn with XFig, distilled,
+and then included as PDF file.
+It has been mangled for testing purposes.
+
+\begin{lstlisting}[language=python]
+import numpy as np
+    
+def incmatrix(genl1,genl2):
+    m = len(genl1)
+    n = len(genl2)
+    M = None #to become the incidence matrix
+    VT = np.zeros((n*m,1), int)  #dummy variable
+    
+    #compute the bitwise xor matrix
+    M1 = bitxormatrix(genl1)
+    M2 = np.triu(bitxormatrix(genl2),1) 
+
+    for i in range(m-1):
+        for j in range(i+1, m):
+            [r,c] = np.where(M2 == M1[i,j])
+            for k in range(len(r)):
+                VT[(i)*n + r[k]] = 1;
+                VT[(i)*n + c[k]] = 1;
+                VT[(j)*n + r[k]] = 1;
+                VT[(j)*n + c[k]] = 1;
+                
+                if M is None:
+                    M = np.copy(VT)
+                else:
+                    M = np.concatenate((M, VT), 1)
+                
+                VT = np.zeros((n*m,1), int)
+    
+    return M
+\end{lstlisting}
+
+\begin{lstlisting}[language=c++]
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n, t1 = 0, t2 = 1, nextTerm = 0;
+
+    cout << "Enter the number of terms: ";
+    cin >> n;
+
+    cout << "Fibonacci Series: ";
+
+    for (int i = 1; i <= n; ++i) {
+        // Prints the first two terms.
+        if(i == 1) {
+            cout << t1 << ", ";
+            continue;
+        }
+        if(i == 2) {
+            cout << t2 << ", ";
+            continue;
+        }
+        nextTerm = t1 + t2;
+        t1 = t2;
+        t2 = nextTerm;
+        
+        cout << nextTerm << ", ";
+    }
+    return 0;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[style=lstoutput]
+Enter a positive integer: 100
+Fibonacci Series: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 
+\end{lstlisting}
+
+\begin{itemize}
+  \item Bla bla
+  \item bla
+  \item das ist ein langer text
+  \item bla
+\end{itemize}
+
+\end{document}
