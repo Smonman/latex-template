@@ -254,11 +254,11 @@ shorten >=2pt
   rounded corners=northwest,
   colframe=black,
   colback=codelightgray,
-  adjusted title=\sffamily\large\bfseries \ifthenelse{\equal{#1}{pseudo}}{Pseudocode}{#1},
+  adjusted title=\sffamily\bfseries \ifthenelse{\equal{#1}{pseudo}}{Pseudocode}{#1},
   listing options={
-  language=\ifstrempty{#1}{pseudo}{#1},
-  frame=none,
-  },
+      language=\ifstrempty{#1}{pseudo}{#1},
+      frame=none,
+    },
   listing only,
 }
 
@@ -273,7 +273,7 @@ shorten >=2pt
     \begin{tcolorbox}[
         colback=mylightblue!10!white,
         colframe=myblue!80!black,
-        adjusted title=\sffamily\large\bfseries \IfLanguageName{ngerman}{Wichtig: #1}{Info: #1},
+        adjusted title=\sffamily\bfseries \IfLanguageName{ngerman}{Wichtig: #1}{Info: #1},
         arc is angular,
         arc=5pt,
         sharp corners,
@@ -434,10 +434,10 @@ function Tree-Search(problem) returns a solution, or failure
   function Tree-Search(problem) returns a solution, or failure
   initialize the frontier using the initial state of problem
   loop do
-    if the frontier is empty then return failure
-    choose a leaf node and remove it from the frontier
-    if the node contains a goal state then return the corresponding solution
-    expand the chosen node, adding the resulting nodes to the frontier
+  if the frontier is empty then return failure
+  choose a leaf node and remove it from the frontier
+  if the node contains a goal state then return the corresponding solution
+  expand the chosen node, adding the resulting nodes to the frontier
 \end{code}
 
 \section{Boxes}
