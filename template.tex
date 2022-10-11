@@ -131,7 +131,7 @@
   mathescape=true,
   basicstyle=\scriptsize,
   keywordstyle=\color{black}\bfseries\em,
-  morekeywords={function, returns, return, if, then, else, and, or, not, loop, do, while, for, switch, case, foreach, begin, end, endif},
+  morekeywords={function, returns, return, if, then, else, and, or, not, loop, do, while, for, each, switch, case, foreach, begin, end, endif, until, repeat, null},
   sensitive=false,
   morecomment=[l]{//},
   morecomment=[s]{/*}{*/},
@@ -249,6 +249,12 @@ shorten >=2pt
 \let\oldnorm\norm
 \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
 \makeatother
+
+%%% CONDITIONS
+\newenvironment{conditions}
+{\par\noindent
+\tabularx{\columnwidth}{>{$}l<{$} @{}>{${}}c<{{}$}@{} >{\raggedright\arraybackslash}X}}
+{\endtabularx\par\vspace{\belowdisplayskip}}
 
 %%% TCOLORBOX
 \tcbset{enhanced}
@@ -374,16 +380,16 @@ shorten >=2pt
   \item I am an item
   \item I am an item
   \item I am an item
-  \begin{itemize}
-    \item I am an item
-    \item I am an item
-    \item I am an item
-    \begin{itemize}
-      \item I am an item
-      \item I am an item
-      \item I am an item
-    \end{itemize}
-  \end{itemize}
+        \begin{itemize}
+          \item I am an item
+          \item I am an item
+          \item I am an item
+                \begin{itemize}
+                  \item I am an item
+                  \item I am an item
+                  \item I am an item
+                \end{itemize}
+        \end{itemize}
 \end{itemize}
 
 \subsection{Enumerate}
@@ -391,16 +397,16 @@ shorten >=2pt
   \item I am an item
   \item I am an item
   \item I am an item
-  \begin{enumerate}
-    \item I am an item
-    \item I am an item
-    \item I am an item
-    \begin{enumerate}
-      \item I am an item
-      \item I am an item
-      \item I am an item
-    \end{enumerate}
-  \end{enumerate}
+        \begin{enumerate}
+          \item I am an item
+          \item I am an item
+          \item I am an item
+                \begin{enumerate}
+                  \item I am an item
+                  \item I am an item
+                  \item I am an item
+                \end{enumerate}
+        \end{enumerate}
 \end{enumerate}
 
 \section{Math}
@@ -410,10 +416,10 @@ shorten >=2pt
   \centering
   \begin{tabular}{ccc}
     \toprule
-    \thead{command} & \thead{non-starred} & \thead{starred} \\
+    \thead{command} & \thead{non-starred}       & \thead{starred}            \\
     \midrule
-    \verb|\abs| & \(\abs{\frac{1}{2}x^2}\) & \(\abs*{\frac{1}{2}x^2}\) \\
-    \verb|\norm| & \(\norm{\frac{1}{2}x^2}\) & \(\norm*{\frac{1}{2}x^2}\) \\ 
+    \verb|\abs|     & \(\abs{\frac{1}{2}x^2}\)  & \(\abs*{\frac{1}{2}x^2}\)  \\
+    \verb|\norm|    & \(\norm{\frac{1}{2}x^2}\) & \(\norm*{\frac{1}{2}x^2}\) \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -424,6 +430,18 @@ The difference between \textit{starred} and \textit{non-starred} lies in the sca
 Command: \verb|\mset| produces the following:
 \[\mset{1, 2, 3, 4}\]
 \[\mset{a \mid \frac{a}{2} > 5}\]
+
+\subsection{Conditions}
+Environment: \verb|\begin{conditions}| can be used for the following:
+\\
+Boltzmann distribution: state occupation probability of a thermodynamical system within fixed temperature \(T\): \[p(x) = \alpha \cdot e^{-\frac{E(x)}{k \cdot T}}\] where:
+\begin{conditions}
+  x & \dots & state \\
+  \alpha & \dots & degeneracy (= number of states \(x'\) with the same energy as \(x\)) \\
+  E(x) & \dots & energy \\
+  k & \dots & Bolzmann constant
+\end{conditions}
+It is possible to have different symbols instead of the dots.
 
 \section{lstlistings}
 
@@ -523,8 +541,8 @@ function Tree-Search(problem) returns a solution, or failure
   expand the chosen node, adding the resulting nodes to the frontier
 \end{code}
 
+\newpage
 \section{Boxes}
-
 \subsection{Infobox}
 \begin{infobox}[noprefix=false]
   \lipsum[1-1]
