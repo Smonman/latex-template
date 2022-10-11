@@ -32,7 +32,7 @@
 \usepackage[utf8]{inputenc} % input encoding
 \usepackage[T1]{fontenc} % font encoding for umlaute
 \usepackage{lipsum} % dummy text
-% MUST BE PLACED LAST%
+% MUST BE PLACED LAST
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 
 %%% COLORS
@@ -240,6 +240,15 @@ shorten >=2pt
 % logical true and false
 \newcommand{\ltrue}{\top}
 \newcommand{\lfalse}{\bot}
+% abs and norm
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
 
 %%% TCOLORBOX
 \tcbset{enhanced}
@@ -359,6 +368,48 @@ shorten >=2pt
 \subparagraph{Subparagraph}
 \lipsum[1-2]
 
+\section{Itemize and Enumerate}
+\subsection{Itemize}
+\begin{itemize}
+  \item I am an item
+  \item I am an item
+  \item I am an item
+  \begin{itemize}
+    \item I am an item
+    \item I am an item
+    \item I am an item
+    \begin{itemize}
+      \item I am an item
+      \item I am an item
+      \item I am an item
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\subsection{Enumerate}
+\begin{enumerate}
+  \item I am an item
+  \item I am an item
+  \item I am an item
+  \begin{enumerate}
+    \item I am an item
+    \item I am an item
+    \item I am an item
+    \begin{enumerate}
+      \item I am an item
+      \item I am an item
+      \item I am an item
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+
+\section{Math}
+\subsection{Abs and Norm}
+\[\abs{\frac{1}{2}x^2}  \quad \norm{\frac{1}{2}x^2}  \qquad\text{non-starred}  \]
+\[\abs*{\frac{1}{2}x^2} \quad \norm*{\frac{1}{2}x^2} \qquad\text{starred}\qquad\]
+\footnote{see https://tex.stackexchange.com/questions/43008/absolute-value-symbols}
+
+\newpage
 \section{lstlistings}
 
 \subsection{Python}
@@ -464,6 +515,7 @@ function Tree-Search(problem) returns a solution, or failure
   \lipsum[1-1]
 \end{infobox}
 
+\subsubsection{Infobox in a minipage}
 \noindent
 \begin{minipage}{0.5\linewidth}% <-- comment is important
   \begin{flushleft}
@@ -480,7 +532,6 @@ function Tree-Search(problem) returns a solution, or failure
   \end{flushright}
 \end{minipage}% <-- comment is important
 
-\newpage
 \subsection{Highlightbox}
 \begin{highlightbox}
   \(1 + 2 = 3\)
