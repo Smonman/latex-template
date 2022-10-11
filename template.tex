@@ -234,7 +234,7 @@ shorten >=2pt
 
 %%% NEW COMMANDS
 % math set
-\newcommand{\mset}[1]{\ensuremath{\{\: #1 \:\}}}
+\newcommand{\mset}[1]{\ensuremath{\left\{\: #1 \:\right\}}}
 % german qote
 \newcommand{\gqote}[1]{\glqq #1\grqq}
 % logical true and false
@@ -404,12 +404,27 @@ shorten >=2pt
 \end{enumerate}
 
 \section{Math}
-\subsection{Abs and Norm}
-\[\abs{\frac{1}{2}x^2}  \quad \norm{\frac{1}{2}x^2}  \qquad\text{non-starred}  \]
-\[\abs*{\frac{1}{2}x^2} \quad \norm*{\frac{1}{2}x^2} \qquad\text{starred}\qquad\]
-\footnote{see https://tex.stackexchange.com/questions/43008/absolute-value-symbols}
 
-\newpage
+\subsection{Abs and Norm}
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{ccc}
+    \toprule
+    \thead{command} & \thead{non-starred} & \thead{starred} \\
+    \midrule
+    \verb|\abs| & \(\abs{\frac{1}{2}x^2}\) & \(\abs*{\frac{1}{2}x^2}\) \\
+    \verb|\norm| & \(\norm{\frac{1}{2}x^2}\) & \(\norm*{\frac{1}{2}x^2}\) \\ 
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The difference between \textit{starred} and \textit{non-starred} lies in the scaling of the bars.\footnote{see https://tex.stackexchange.com/a/43009}
+
+\subsection{Set}
+Command: \verb|\mset| produces the following:
+\[\mset{1, 2, 3, 4}\]
+\[\mset{a \mid \frac{a}{2} > 5}\]
+
 \section{lstlistings}
 
 \subsection{Python}
