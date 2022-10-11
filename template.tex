@@ -24,6 +24,7 @@
 \usepackage{tabularx} % better table layout
 \usepackage{makecell} % table cell configuration
 \usepackage{listings} % code listing
+\usepackage{pgfkeys} % pgf keys
 \usepackage{tikz} % draw diagrams and figures
 \usepackage{varwidth} % variable width mini-page
 \usepackage{float} % 
@@ -242,47 +243,63 @@ shorten >=2pt
 
 %%% TCOLORBOX
 \tcbset{enhanced}
+\tcbuselibrary{listings}
 
 %%% CODE BOX
-\tcbuselibrary{listings}
 \newtcblisting{code}[1][]{
   boxsep=1pt,
   boxrule=0.8pt,
+  adjusted title=\sffamily\bfseries #1,
   sharp corners,
   arc is angular,
   arc=10pt,
   rounded corners=northwest,
   colframe=black,
   colback=codelightgray,
-  adjusted title=\sffamily\bfseries \ifthenelse{\equal{#1}{pseudo}}{Pseudocode}{#1},
   listing options={
-      language=\ifstrempty{#1}{pseudo}{#1},
+      language=#1,
       frame=none,
     },
-  listing only,
+  listing only
 }
 
 %%% INFO BOX
+\newif\ifinfoboxNoPrefix
+\newif\ifinfoboxNoFloat
+\pgfkeys{
+  /infobox/.is family, /infobox,
+  title/.estore in=\infoboxTitle,
+  noprefix/.is if=infoboxNoPrefix,
+  nofloat/.is if=infoboxNoFloat,
+  width/.estore in=\infoboxWidth,
+  default/.style={title={},noprefix=true,nofloat=false,width=\linewidth}
+}
+
 \makeatletter
 \newfloat{info@box}{!htbp}{loi}[section]
 \makeatother
 \floatname{info@box}{Infobox}
 
 \newenvironment{infobox}[1][]{
-  \begin{info@box}
-    \begin{tcolorbox}[
-        colback=mylightblue!10!white,
-        colframe=myblue!80!black,
-        adjusted title=\sffamily\bfseries \IfLanguageName{ngerman}{Wichtig: #1}{Info: #1},
-        arc is angular,
-        arc=5pt,
-        sharp corners,
-        rounded corners=southeast,
-        boxrule=0.8pt
-      ]
-      }{
-    \end{tcolorbox}
-  \end{info@box}
+  \pgfkeys{/infobox, default, #1}
+  \def\infoboxTitlePrefixValue{\ifinfoboxNoPrefix \else \IfLanguageName{ngerman}{Wichtig: }{Info: } \fi}
+  \def\infoboxTitleValue{\infoboxTitlePrefixValue \infoboxTitle}
+
+  \ifinfoboxNoFloat \else \begin{info@box} \fi
+      \begin{tcolorbox}[
+          colback=mylightblue!10!white,
+          colframe=myblue!80!black,
+          adjusted title=\sffamily\bfseries \infoboxTitleValue,
+          arc is angular,
+          arc=5pt,
+          sharp corners,
+          rounded corners=southeast,
+          boxrule=0.8pt,
+          width=\infoboxWidth,
+        ]
+        }{
+      \end{tcolorbox}
+      \ifinfoboxNoFloat \else \end{info@box} \fi
 }
 
 %%% HIGHLIGHT BOX
@@ -443,10 +460,27 @@ function Tree-Search(problem) returns a solution, or failure
 \section{Boxes}
 
 \subsection{Infobox}
-\begin{infobox}[]
+\begin{infobox}[noprefix=false]
   \lipsum[1-1]
 \end{infobox}
 
+\noindent
+\begin{minipage}{0.5\linewidth}% <-- comment is important
+  \begin{flushleft}
+    \begin{infobox}[title={This is the title},noprefix,nofloat,width=0.95\linewidth]
+      I am the left info box.
+    \end{infobox}
+  \end{flushleft}
+\end{minipage}% <-- comment is important
+\begin{minipage}{0.5\linewidth}% <-- comment is important
+  \begin{flushright}
+    \begin{infobox}[title={This is the title},noprefix,nofloat,width=0.95\linewidth]
+      I am the right info box.
+    \end{infobox}
+  \end{flushright}
+\end{minipage}% <-- comment is important
+
+\newpage
 \subsection{Highlightbox}
 \begin{highlightbox}
   \(1 + 2 = 3\)
