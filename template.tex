@@ -110,7 +110,10 @@
   stepnumber=1,
   stringstyle=\color{codegreen},
   tabsize=4,
-  escapeinside={(*}{*)}
+  escapeinside={(*}{*)},
+  linewidth=\columnwidth,
+  xleftmargin=3.4pt,
+  xrightmargin=3.4pt,
 }
 \lstdefinestyle{lstoutput}{
   backgroundcolor=\color{codelightgray},
@@ -126,6 +129,7 @@
   stepnumber=0,
   tabsize=4,
   title=Output,
+  escapeinside={(*}{*)},
 }
 \lstdefinelanguage{pseudo}{
   mathescape=true,
@@ -261,21 +265,27 @@ shorten >=2pt
 \tcbuselibrary{listings}
 
 %%% CODE BOX
-\newtcblisting{code}[1][]{
+\newtcblisting{code}[2][]{
+  enhanced,
   boxsep=1pt,
   boxrule=0.8pt,
-  adjusted title=\sffamily\bfseries #1,
+  toprule=5pt,
+  titlerule=5pt,
+  width=\columnwidth,
+  adjusted title=\sffamily\bfseries #2,
+  after upper={\par\hfill\textit{#1}},
+  breakable,
   sharp corners,
   arc is angular,
   arc=10pt,
   rounded corners=northwest,
   colframe=black,
   colback=codelightgray,
+  listing only,
   listing options={
       language=#1,
       frame=none,
     },
-  listing only
 }
 
 %%% INFO BOX
@@ -334,7 +344,7 @@ shorten >=2pt
           sharpish corners,
           boxrule=0.8pt,
           halign=flush center,
-          width=0.4\linewidth,
+          width=0.4\columnwidth,
           lifted shadow={1mm}{-2mm}{3mm}{0.2mm}{black!50!white}
         ]
         \large
@@ -532,7 +542,7 @@ function Tree-Search(problem) returns a solution, or failure
     expand the chosen node, adding the resulting nodes to the frontier
 \end{lstlisting}
 
-\begin{code}[pseudo]
+\begin{code}[pseudo]{code.pseudo}
   function Tree-Search(problem) returns a solution, or failure
   initialize the frontier using the initial state of problem
   loop do
@@ -542,7 +552,24 @@ function Tree-Search(problem) returns a solution, or failure
   expand the chosen node, adding the resulting nodes to the frontier
 \end{code}
 
-\newpage
+\begin{code}[pseudo]{ This is a very very very very very very very very very very very very very very very very very very long title}
+  function Tree-Search(problem) returns a solution, or failure
+  initialize the frontier using the initial state of problem
+  loop do
+  if the frontier is empty then return failure
+  choose a leaf node and remove it from the frontier
+  if the node contains a goal state then return the corresponding solution
+  expand the chosen node, adding the resulting nodes to the frontier
+
+  function Tree-Search(problem) returns a solution, or failure
+  initialize the frontier using the initial state of problem
+  loop do
+  if the frontier is empty then return failure
+  choose a leaf node and remove it from the frontier
+  if the node contains a goal state then return the corresponding solution
+  expand the chosen node, adding the resulting nodes to the frontier
+\end{code}
+
 \section{Boxes}
 \subsection{Infobox}
 \begin{infobox}[noprefix=false]
