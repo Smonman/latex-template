@@ -226,6 +226,9 @@ shorten >=2pt
 % declare a new column type, that auto sizes but has ragged right text
 \newcolumntype{Z}{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}X}
 
+% declare a new column type, that auto sizes and centeres the text
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
 %%% TABLE HEADER
 % set table header to bold
 \renewcommand\theadfont{\bfseries}
