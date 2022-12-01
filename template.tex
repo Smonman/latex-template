@@ -84,13 +84,19 @@ Commands \verb|\abs| and \verb|\norm|\footnote{see https://tex.stackexchange.com
 
 The difference between \textit{starred} and \textit{non-starred} lies in the scaling of the bars.
 
-\subsection{Set}
+\subsection{Sets and Tupels}
 Command: \verb|\mset| produces the following:
 \[\mset{1, 2, 3, 4}\]
 \[\mset{a \mid \frac{a}{2} > 5}\]
+Command: \verb|\msetempty| produces the following:
+\[\msetempty\]
+Command: \verb|\mtupel| produces the following:
+\[\mtupel{1, 2, 3, 4}\]
+Command: \verb|\mtupelempty| produces the following:
+\[\mtupelempty\]
 
 \subsection{Conditions}
-Environment: \verb|\begin{conditions}|\footnote{see https://tex.stackexchange.com/a/95842} can be used for the following:
+Environment: \verb|\begin{conditions}| \footnote{see https://tex.stackexchange.com/a/95842} can be used for the following:
 \\
 Boltzmann distribution: state occupation probability of a thermodynamical system within fixed temperature \(T\): \[p(x) = \alpha \cdot e^{-\frac{E(x)}{k \cdot T}}\] where:
 \begin{conditions}
@@ -100,6 +106,13 @@ Boltzmann distribution: state occupation probability of a thermodynamical system
   k & \dots & Bolzmann constant
 \end{conditions}
 It is possible to have different symbols instead of the dots.
+
+\section{Logic}
+\subsection{Verum and Falsum}
+Command: \verb|\ltrue| produces the following:
+\[\ltrue\]
+Command: \verb|\lfalse| produces the following:
+\[\lfalse\]
 
 \section{lstlistings}
 
