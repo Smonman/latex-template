@@ -261,7 +261,7 @@ shorten >=2pt
 
 %%% CONDITIONS
 \newenvironment{conditions}
-{\par\noindent
+{\renewcommand{\arraystretch}{1.25}\par\noindent
 \tabularx{\columnwidth}{>{$}l<{$} @{}>{${}}c<{{}$}@{} >{\raggedright\arraybackslash}X}}
 {\endtabularx\par\vspace{\belowdisplayskip}}
 
