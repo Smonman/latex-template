@@ -5,6 +5,7 @@
 % PACKAGES
 \usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,headsep=1cm]{geometry} % layout
 \usepackage[english,ngerman]{babel} % language
+\usepackage{csquotes} % enqote
 \usepackage{iflang} % conditional statements based on selected language
 \usepackage{ifthen} % for conditinal branching
 \usepackage[skip=4pt, indent=10pt]{parskip} % spacing between paragraphs
@@ -13,7 +14,7 @@
 \usepackage{amsmath} % math
 \usepackage{amssymb} % math symbols
 \usepackage{mathtools} % enhances amsmath
-\usepackage{amsthm} %
+\usepackage{amsthm} % 
 \usepackage{microtype} % improves the spacing between words and letters
 \usepackage[inline]{enumitem} % horizontal lists
 \usepackage{graphicx} % graphics, images
@@ -225,7 +226,6 @@ shorten >=2pt
 %%% TABULARX
 % declare a new column type, that auto sizes but has ragged right text
 \newcolumntype{Z}{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}X}
-
 % declare a new column type, that auto sizes and centeres the text
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 
@@ -246,8 +246,6 @@ shorten >=2pt
 % math tuple
 \newcommand{\mtupel}[1]{\ensuremath{\langle \: #1 \: \rangle}}
 \newcommand{\mtupelempty}{\ensuremath{\langle \rangle}}
-% german qote
-\newcommand{\gqote}[1]{\glqq #1\grqq}
 % logical true and false
 \newcommand{\ltrue}{\top}
 \newcommand{\lfalse}{\bot}
