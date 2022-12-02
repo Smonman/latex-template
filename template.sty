@@ -1,40 +1,42 @@
 %%% TEMPLATE
 % Author: Simon Josef Kreuzpointner
-% Date: 06.10.2022
+% Date: 02.12.2022
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{template}[2022/12/01 personal latex template]
 
 % PACKAGES
-\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,headsep=1cm]{geometry} % layout
-\usepackage[utf8]{inputenc} % input encoding
-\usepackage[T1]{fontenc} % font encoding for umlaute
-\usepackage[english,ngerman]{babel} % language
-\usepackage{csquotes} % enqote
-\usepackage{iflang} % conditional statements based on selected language
-\usepackage{ifthen} % for conditinal branching
-\usepackage[skip=4pt, indent=10pt]{parskip} % spacing between paragraphs
-\usepackage{titling} % title
-\usepackage{fancyhdr} % header and footer
-\usepackage{amsmath} % math
-\usepackage{amssymb} % math symbols
-\usepackage{mathtools} % enhances amsmath
-\usepackage{amsthm} % 
-\usepackage{microtype} % improves the spacing between words and letters
-\usepackage[inline]{enumitem} % horizontal lists
-\usepackage{graphicx} % graphics, images
-\usepackage{array} % extension of array and tabular environments
-\usepackage{xcolor} % work with colors
-\usepackage{fp} % fixed point arithmetic
-\usepackage{booktabs} % better table design
-\usepackage{tabularx} % better table layout
-\usepackage{makecell} % table cell configuration
-\usepackage{listings} % code listing
-\usepackage{pgfkeys} % pgf keys
-\usepackage{tikz} % draw diagrams and figures
-\usepackage{varwidth} % variable width mini-page
-\usepackage{float} % 
-\usepackage[most]{tcolorbox} % for infoboxes
-\usepackage{lipsum} % dummy text
+\RequirePackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,headsep=1cm]{geometry} % layout
+\RequirePackage[utf8]{inputenc} % input encoding
+\RequirePackage[T1]{fontenc} % font encoding for umlaute
+\RequirePackage[english,ngerman]{babel} % language
+\RequirePackage{csquotes} % enqote
+\RequirePackage{iflang} % conditional statements based on selected language
+\RequirePackage{ifthen} % for conditinal branching
+\RequirePackage[skip=4pt, indent=10pt]{parskip} % spacing between paragraphs
+\RequirePackage{titling} % title
+\RequirePackage{fancyhdr} % header and footer
+\RequirePackage{amsmath} % math
+\RequirePackage{amssymb} % math symbols
+\RequirePackage{mathtools} % enhances amsmath
+\RequirePackage{amsthm} % 
+\RequirePackage{microtype} % improves the spacing between words and letters
+\RequirePackage[inline]{enumitem} % horizontal lists
+\RequirePackage{graphicx} % graphics, images
+\RequirePackage{array} % extension of array and tabular environments
+\RequirePackage{xcolor} % work with colors
+\RequirePackage{fp} % fixed point arithmetic
+\RequirePackage{booktabs} % better table design
+\RequirePackage{tabularx} % better table layout
+\RequirePackage{makecell} % table cell configuration
+\RequirePackage{listings} % code listing
+\RequirePackage{pgfkeys} % pgf keys
+\RequirePackage{tikz} % draw diagrams and figures
+\RequirePackage{varwidth} % variable width mini-page
+\RequirePackage{float} % 
+\RequirePackage[most]{tcolorbox} % for infoboxes
 % MUST BE PLACED LAST
-\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\RequirePackage[colorlinks=true, allcolors=blue]{hyperref}
 
 %%% COLORS
 % standard colors
@@ -55,21 +57,25 @@
 \graphicspath{{../img/}}
 
 %%% TITLE STYLE
+% before title
 \pretitle{
   \begin{center}
-    \Huge
-    }
-    \posttitle{
+  \Huge
+}
+% after title
+\posttitle{
   \end{center}
   \noindent\vrule height 2.5pt width \textwidth
   \vskip .75em plus .25em minus .25em
 }
+% before author
 \preauthor{
   \begin{center}
-    \itshape---
-    }
-    \postauthor{
-    ---
+  \itshape---
+}
+% after author
+\postauthor{
+  ---
   \end{center}
 }
 
